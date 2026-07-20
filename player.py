@@ -2,8 +2,8 @@ import pygame
 from circleshape import CircleShape
 from constants import *
 
-
 class Player(CircleShape):
+    
     def __init__(self, x, y):
         super().__init__(x, y, PLAYER_RADIUS)
         self.rotation = 0
@@ -39,5 +39,4 @@ class Player(CircleShape):
         if keys[pygame.K_w]:
             self.move(dt)
         if keys[pygame.K_s]:
-            self.move(-dt)   
- 
+            self.move(-dt)
