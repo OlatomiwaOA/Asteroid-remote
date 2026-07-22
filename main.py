@@ -1,6 +1,8 @@
 import pygame
+import sys
+
 from constants import *
-from logger import log_state
+from logger import log_event, log_state
 from player import Player
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
@@ -36,10 +38,18 @@ def main():
 
         updatable.update(dt)
 
+        for asteroid_object in asteroids:
+            if asteroid_object.collides_with(player):
+                log_event("player_hit")
+                print("Game over!")
+                sys.exit()
+        
         screen.fill("black")
+        
         for drawable_object in drawable:
             drawable_object.draw(screen)
         
+
         pygame.display.flip()
 
         #limit the framerate to 60 FPS
