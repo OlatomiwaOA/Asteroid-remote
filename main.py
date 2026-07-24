@@ -46,6 +46,13 @@ def main():
                 log_event("player_hit")
                 print("Game over!")
                 sys.exit()
+
+        for asteroid_object in asteroids:
+            for shot in shots:
+                if asteroid_object.collides_with(shot):
+                    log_event("asteroid_shot")
+                    pygame.sprite.Sprite.kill(asteroid_object)
+                    pygame.sprite.Sprite.kill(shot)
         
         screen.fill("black")
 
@@ -57,7 +64,7 @@ def main():
 
         #limit the framerate to 60 FPS
         dt = clock.tick(60.0)/1000
-        player.cooldown_timer -= dt
+        
         
 
 if __name__ == "__main__":
